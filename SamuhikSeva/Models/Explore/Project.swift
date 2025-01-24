@@ -10,6 +10,7 @@ import Foundation
 struct Project: Identifiable, Decodable, Equatable {
     let id: String
     let name: String
+    let image: String?
     let description: [String]
     let short_description: String
     let location: String

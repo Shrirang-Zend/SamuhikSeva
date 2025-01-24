@@ -77,11 +77,25 @@ struct ShopView: View {
 
                 Spacer()
             }
-
             // Drawer View
             if isDrawerOpen {
-                DrawerView(isDrawerOpen: $isDrawerOpen)
-                    .transition(.move(edge: .leading))
+                HStack {
+                    DrawerView(isDrawerOpen: $isDrawerOpen)
+                        .frame(width: 200)
+                        .transition(.move(edge: .leading))
+                        .zIndex(4)
+
+                    Spacer() // Pushes the DrawerView to the left
+                }
+                .background(
+                    Color.black.opacity(0.3)
+                        .ignoresSafeArea()
+                        .onTapGesture {
+                            withAnimation {
+                                isDrawerOpen = false
+                            }
+                        }
+                )
             }
         }
     }

@@ -8,11 +8,33 @@
 import SwiftUI
 
 struct DonateButtonView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+    @Binding var isDonationSheetPresented: Bool
+    @Binding var showConfetti: Bool
+    let project: Project
 
-#Preview {
-    DonateButtonView()
+    var body: some View {
+        Button(action: {
+            isDonationSheetPresented = true
+        }) {
+            Text("Donate")
+                .font(.headline)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.orange)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+        }
+        .sheet(isPresented: $isDonationSheetPresented) {
+            DonationView(isPresented: $isDonationSheetPresented, onDonate: {
+                withAnimation {
+                    showConfetti = true // Trigger confetti
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    showConfetti = false // Dismiss confetti after 2 seconds
+                }
+            })
+            .presentationDetents([.medium, .large])
+            .presentationDragIndicator(.visible)
+        }
+    }
 }

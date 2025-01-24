@@ -1,46 +1,69 @@
+//
+//  LeaderboardView.swift
+//  SamuhikSeva
+//
+//  Created by Shrirang Zend on 23/01/25.
+//
+
 import SwiftUI
 
 struct LeaderboardView: View {
-    @StateObject private var viewModel = LeaderboardViewModel()
+    @EnvironmentObject var viewModel: LeaderboardViewModel
 
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(spacing: 20) {
-                    // Title
-                    Text("Leaderboard")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .padding(.top)
-
-                    // Top 3 Organizations as Cards
-                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 16) {
-                        ForEach(viewModel.organizations.prefix(3).enumeratedArray(), id: \.element.id) { index, org in
+        ScrollView {
+            VStack(spacing: 20) {
+                // Check for Empty Data
+                if viewModel.organizations.isEmpty {
+                    Text("No data available")
+                        .foregroundColor(.gray)
+                        .font(.title3)
+                } else {
+                    // Top 3 Cards
+                    VStack(spacing: 16) {
+                        ForEach(Array(viewModel.organizations.prefix(3).enumerated()), id: \.element.id) { index, org in
                             LeaderboardCardView(
                                 organization: org,
                                 rank: index + 1
                             )
+                            .frame(maxWidth: .infinity)
                         }
                     }
                     .padding(.horizontal)
 
-                    // Remaining Organizations in Table Format
+                    // Full Leaderboard
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Full Leaderboard")
                             .font(.title2)
                             .fontWeight(.semibold)
+                            .padding(.leading)
 
-                        ForEach(viewModel.organizations.dropFirst(3).enumeratedArray(), id: \.element.id) { index, org in
+                        ForEach(Array(viewModel.organizations.dropFirst(3).enumerated()), id: \.element.id) { index, org in
                             LeaderboardRowView(
                                 rank: index + 4,
                                 organization: org
                             )
                         }
                     }
-                    .padding()
+                    .padding(.horizontal)
                 }
             }
-            .navigationBarTitle("", displayMode: .inline)
+            .padding(.horizontal)
         }
+        .onAppear {
+            // Debug the Data
+            print("Organizations Count: \(viewModel.organizations.count)")
+            viewModel.organizations.forEach { org in
+                print("Organization: \(org.name), CO2: \(org.co2Reduction)")
+            }
+        }
+    }
+}
+
+struct LeaderboardView_Previews: PreviewProvider {
+    static var previews: some View {
+        let mockViewModel = LeaderboardViewModel()
+        return LeaderboardView()
+            .environmentObject(mockViewModel)
     }
 }

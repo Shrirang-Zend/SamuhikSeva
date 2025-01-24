@@ -8,11 +8,41 @@
 import SwiftUI
 
 struct QuizSelectionSheet: View {
+    @Binding var isQuizDetailPresented: Bool
+    @EnvironmentObject var viewModel: QuizViewModel
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack {
+                Text("Select a Quiz")
+                    .font(.title)
+                    .padding()
+
+                List(viewModel.quizzes, id: \.id) { quiz in
+                    NavigationLink(
+                        destination: QuizDetailView(
+                            viewModel: QuizDetailViewModel(quiz: quiz)
+                        )
+                    ) {
+                        Text(quiz.theme)
+                            .font(.headline)
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(Color(.systemGray6))
+                            .cornerRadius(8)
+                    }
+                }
+                .listStyle(PlainListStyle())
+            }
+            .navigationBarHidden(true)
+        }
     }
 }
 
-#Preview {
-    QuizSelectionSheet()
+struct QuizSelectionSheet_Previews: PreviewProvider {
+    static var previews: some View {
+        QuizSelectionSheet(isQuizDetailPresented: .constant(false)) // Provide dummy binding
+            .environmentObject(QuizViewModel()) // Inject environment object
+            .previewLayout(.device)
+    }
 }

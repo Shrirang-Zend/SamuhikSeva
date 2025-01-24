@@ -104,7 +104,11 @@ struct HomeView: View {
                                     .navigationBarHidden(true)
                                     .navigationBarBackButtonHidden(true)
                             case "trophy":
-                                Text("Leaderboards")
+                                LeaderboardView()
+                                    .environmentObject(LeaderboardViewModel())
+                                    .padding(.top, 60)
+                                    .navigationBarHidden(true)
+                                    .navigationBarBackButtonHidden(true)
                             case "person":
                                 RewardsView()
                                     .navigationBarHidden(true)
@@ -136,18 +140,8 @@ struct HomeView: View {
 
     // Scroll handling to show/hide TabView
     private func handleScroll(newOffset: CGFloat) {
-        let threshold: CGFloat = 50
-        let delta = newOffset - lastScrollOffset
-
-//        if delta < -threshold, !isTabViewVisible {
-//            withAnimation {
-//                isTabViewVisible = true
-//            }
-//        } else if delta > threshold, isTabViewVisible {
-//            withAnimation {
-//                isTabViewVisible = false
-//            }
-//        }
+        let _: CGFloat = 50
+        _ = newOffset - lastScrollOffset
 
         lastScrollOffset = newOffset
     }

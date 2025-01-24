@@ -1,3 +1,10 @@
+//
+//  QuizDetailViewModel.swift
+//  SamuhikSeva
+//
+//  Created by Shrirang Zend on 24/01/25.
+//
+
 import Foundation
 
 class QuizDetailViewModel: ObservableObject {

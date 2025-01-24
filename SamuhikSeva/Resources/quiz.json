@@ -1,0 +1,100 @@
+{
+  "quizzes": [
+    {
+      "id": "30e63b58-0ad6-4e14-b660-7bf4c236ff70",
+      "theme": "Recycling Awareness",
+      "questions": [
+        {
+          "id": "fa9f68b3-4e26-4933-a63d-2b3b92a5d8f2",
+          "question": "Which type of waste can be recycled?",
+          "options": ["Plastic bottles", "Food waste", "Styrofoam"],
+          "correctOption": "Plastic bottles"
+        },
+        {
+          "id": "d93f7555-69e6-4c6e-b51f-9e10d79c7f89",
+          "question": "What does the recycling symbol with three arrows represent?",
+          "options": ["Reduce, Reuse, Recycle", "Recycle, Recover, Rebuild", "Return, Repair, Recycle"],
+          "correctOption": "Reduce, Reuse, Recycle"
+        },
+        {
+          "id": "b3cd57e5-0953-49ee-8b43-c94b9e5a3e5b",
+          "question": "Which color bin is generally used for paper recycling?",
+          "options": ["Blue", "Green", "Red"],
+          "correctOption": "Blue"
+        },
+        {
+          "id": "fa3466d9-399c-4875-91bb-b1db531d0e14",
+          "question": "What is the best way to recycle glass bottles?",
+          "options": ["Crush and throw in the garbage", "Wash and place in a recycling bin", "Throw in general waste"],
+          "correctOption": "Wash and place in a recycling bin"
+        },
+        {
+          "id": "cd2a6894-3170-41d1-9e3d-45c3ff6e10f3",
+          "question": "Which material is NOT recyclable?",
+          "options": ["Metal cans", "Plastic wrap", "Cardboard"],
+          "correctOption": "Plastic wrap"
+        },
+        {
+          "id": "5294e2b3-3e57-4d69-a191-8a9b4c0b7f21",
+          "question": "Why should recyclables be clean before recycling?",
+          "options": ["To avoid contamination", "To reduce processing time", "To speed up delivery"],
+          "correctOption": "To avoid contamination"
+        },
+        {
+          "id": "3e1acde4-6ec7-4cd1-a5b6-7e40debf1e37",
+          "question": "Which of these is a benefit of recycling?",
+          "options": ["Conserving resources", "Creating more waste", "Increasing landfill size"],
+          "correctOption": "Conserving resources"
+        }
+      ]
+    },
+    {
+      "id": "4475e28e-bf99-4d8b-a639-3dc7b5406f44",
+      "theme": "Energy Efficiency",
+      "questions": [
+        {
+          "id": "da4c1dcb-d4c5-4d97-8108-68b154f9d24a",
+          "question": "What is the most energy-efficient light bulb?",
+          "options": ["LED", "Incandescent", "Halogen"],
+          "correctOption": "LED"
+        },
+        {
+          "id": "c4c77b84-5165-4677-8a5d-d3e37edac2de",
+          "question": "Which of these appliances uses the least energy?",
+          "options": ["Laptop", "Desktop computer", "Television"],
+          "correctOption": "Laptop"
+        },
+        {
+          "id": "8ae86222-8f4f-4875-a174-3607fcbfc33b",
+          "question": "How can you save energy when washing clothes?",
+          "options": ["Use cold water", "Use hot water", "Wash one item at a time"],
+          "correctOption": "Use cold water"
+        },
+        {
+          "id": "6374b5e6-57de-4d89-995e-d7320c056de4",
+          "question": "What is the best way to reduce electricity usage at home?",
+          "options": ["Turn off unused appliances", "Use appliances at night", "Buy more devices"],
+          "correctOption": "Turn off unused appliances"
+        },
+        {
+          "id": "b396daab-49ad-47a2-bc92-5c13ff35d0cf",
+          "question": "What does an energy star label signify?",
+          "options": ["Energy-efficient appliance", "High power usage", "Low price"],
+          "correctOption": "Energy-efficient appliance"
+        },
+        {
+          "id": "4ec29036-264f-45fa-b47d-55c6bcefb7f4",
+          "question": "Which energy source is renewable?",
+          "options": ["Solar", "Coal", "Natural gas"],
+          "correctOption": "Solar"
+        },
+        {
+          "id": "ebcb4cf8-31c4-4828-90da-0d432a97ff6a",
+          "question": "What can you do to reduce phantom energy usage?",
+          "options": ["Unplug unused devices", "Leave devices on standby", "Use bigger appliances"],
+          "correctOption": "Unplug unused devices"
+        }
+      ]
+    }
+  ]
+}

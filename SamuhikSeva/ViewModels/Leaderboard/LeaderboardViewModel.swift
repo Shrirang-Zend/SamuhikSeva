@@ -1,3 +1,10 @@
+//
+//  LeaderboardViewModel.swift
+//  SamuhikSeva
+//
+//  Created by Shrirang Zend on 23/01/25.
+//
+
 import Foundation
 
 class LeaderboardViewModel: ObservableObject {
@@ -9,20 +16,21 @@ class LeaderboardViewModel: ObservableObject {
 
     private func loadOrganizations() {
         guard let url = Bundle.main.url(forResource: "orgs", withExtension: "json") else {
-            print("JSON file not found")
+            print("JSON file not found in the bundle")
             return
         }
 
         do {
             let data = try Data(contentsOf: url)
-            let decodedData = try JSONDecoder().decode([Organization].self, from: data)
-            organizations = decodedData.sorted { orgA, orgB in
-                let impactA = orgA.co2Reduction + orgA.treesPlanted + orgA.waterSaved
-                let impactB = orgB.co2Reduction + orgB.treesPlanted + orgB.waterSaved
-                return impactB > impactA
-            }
+            let decodedData = try JSONDecoder().decode(OrganizationsWrapper.self, from: data)
+            organizations = decodedData.organizations
+            print("Organizations Loaded: \(organizations.count)")
         } catch {
-            print("Error loading organizations: \(error)")
+            print("Error decoding JSON: \(error.localizedDescription)")
         }
     }
+}
+
+struct OrganizationsWrapper: Codable {
+    let organizations: [Organization]
 }

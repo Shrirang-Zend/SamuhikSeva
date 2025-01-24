@@ -9,25 +9,21 @@ import SwiftUI
 
 struct VideoFrameSection: View {
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Watch the Video")
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Featured Video")
                 .font(.title2)
                 .fontWeight(.bold)
-                .padding(.bottom, 10)
-            
-            Rectangle()
-                .fill(Color.gray.opacity(0.2))
-                .frame(height: 200)
+
+            WebView(embedUrl: "https://www.youtube.com/embed/QysiRwibglg?si=NCCMGNW0K87SamyS")
+                .frame(height: 200) // Adjust the height to fit your design
                 .cornerRadius(10)
-                .overlay(
-                    Text("Video Frame")
-                        .foregroundColor(.gray)
-                        .font(.headline)
-                )
+                .shadow(radius: 5)
         }
     }
 }
 
-#Preview {
-    VideoFrameSection()
+struct VideoFrameSection_Previews: PreviewProvider {
+    static var previews: some View {
+        VideoFrameSection()
+    }
 }

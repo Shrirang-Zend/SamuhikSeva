@@ -13,24 +13,23 @@ struct ExploreView: View {
     @State private var dragOffset: CGSize = .zero
 
     var body: some View {
-        ZStack {
-            ForEach((0..<projects.count).reversed(), id: \ .self) { index in
+        ZStack(alignment: .center) { // Ensure alignment is centered
+            // Card Stack
+            ForEach((0..<projects.count).reversed(), id: \.self) { index in
                 if index >= topCardIndex {
                     ProjectCardView(project: projects[index])
-                        .zIndex(Double(projects.count - index)) // Ensure proper stacking order
+                        .zIndex(Double(projects.count - index)) // Stacking order
                         .offset(
                             x: index == topCardIndex ? dragOffset.width : 0,
                             y: CGFloat(index - topCardIndex) * 10 + (index == topCardIndex ? dragOffset.height : 0)
                         )
-                        .scaleEffect(index == topCardIndex ? 1.0 : 0.95)
-                        .rotationEffect(
-                            .degrees(index == topCardIndex ? 0 : Double(index - topCardIndex) * 3)
-                        )
+                        .scaleEffect(index == topCardIndex ? 1.0 : 0.95) // Top card larger
+                        .rotationEffect(.degrees(index == topCardIndex ? 0 : Double(index - topCardIndex) * 2)) // Slight rotation
                         .gesture(
                             index == topCardIndex ?
                                 DragGesture()
                                     .onChanged { value in
-                                        handleDrag(value.translation)
+                                        dragOffset = value.translation
                                     }
                                     .onEnded { value in
                                         handleDragEnd(value.translation)
@@ -41,29 +40,27 @@ struct ExploreView: View {
                 }
             }
 
+            // Empty State
             if topCardIndex >= projects.count {
                 Text("No more projects!")
                     .font(.headline)
                     .foregroundColor(.gray)
+                    .padding()
             }
         }
         .padding()
         .onAppear {
             loadProjects()
         }
-        .navigationBarHidden(true) // Ensures no system navigation bar
-        .navigationBarBackButtonHidden(true) // Removes the back button if navigating here
-    }
-
-    private func handleDrag(_ translation: CGSize) {
-        dragOffset = translation
+        .navigationBarHidden(true) // Hide navigation bar
+        .navigationBarBackButtonHidden(true) // Hide back button
     }
 
     private func handleDragEnd(_ translation: CGSize) {
-        if abs(translation.width) > 100 {
+        if abs(translation.width) > 100 { // Swipe threshold
             withAnimation {
                 dragOffset = .zero
-                topCardIndex += 1
+                topCardIndex += 1 // Move to the next card
             }
         } else {
             withAnimation {
